@@ -42,13 +42,17 @@
 今回は以下のコマンドを実行して仮想環境で説明します． 
 ### 1. 仮想環境の作成と有効化
    ```
-   $ python3 -m venv gemini c0a22169-mo1@c0a22169-monitoring:~/gemini_alert$ $ source gemini/bin/activate (gemini) c0a22169-mo1@c0a22169-monitoring:~/gemini_alert$
+$ python3 -m venv gemini
+c0a22169-mo1@c0a22169-monitoring:~/gemini_alert$
+```
+```
+$ source gemini/bin/activate
+(gemini) c0a22169-mo1@c0a22169-monitoring:~/gemini_alert$
    ```
 ### 2. Gemini APIキー設定 
 ```
 $ export GEMINI_APIKEY="your-api-key"
 (gemini) c0a22169-mo1@c0a22169-monitoring:~/gemini_alert$
-
 ```
 ### 3. Flaskアプリ起動 
 ```
