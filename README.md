@@ -40,15 +40,30 @@
 
 ## 使用例 
 今回は以下のコマンドを実行して仮想環境で説明します． 
-1. 仮想環境の作成と有効化
+### 1. 仮想環境の作成と有効化
    ```
    $ python3 -m venv gemini c0a22169-mo1@c0a22169-monitoring:~/gemini_alert$ $ source gemini/bin/activate (gemini) c0a22169-mo1@c0a22169-monitoring:~/gemini_alert$
    ```
-2. Gemini APIキー設定 $ export GEMINI_APIKEY="your-api-key" (gemini) c0a22169-mo1@c0a22169-monitoring:~/gemini_alert$
+### 2. Gemini APIキー設定 $ export GEMINI_APIKEY="your-api-key" (gemini) c0a22169-mo1@c0a22169-monitoring:~/gemini_alert$
 
-3. 3. Flaskアプリ起動 $ python3 gemini_alert.py ✅ GEMINI_API_KEY が設定されました（長さ: 39） * Serving Flask app 'gemini_alert' * Debug mode: on WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead. * Running on all addresses (0.0.0.0) * Running on http://127.0.0.1:5000 * Running on http://192.168.100.78:5000 Press CTRL+C to quit * Restarting with stat ✅ GEMINI_API_KEY が設定されました（長さ: 39） * Debugger is active! * Debugger PIN: 128-429-581
+### 3. Flaskアプリ起動 
+```
+$ python3 gemini_alert.py 
+✅ GEMINI_API_KEY が設定されました（長さ: 39）
+ * Serving Flask app 'gemini_alert'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.78:5000
+Press CTRL+C to quit
+ * Restarting with stat
+✅ GEMINI_API_KEY が設定されました（長さ: 39）
+ * Debugger is active!
+ * Debugger PIN: 128-429-581
+```
 
-4. 動作確認
+### 4. 動作確認
 今回はテストとして別のターミナルでcurlを実行し，動作の確認を行います．
 ```
 $ curl -X POST http://localhost:5000/alert -H "Content-Type: application/json" -d '{
@@ -59,13 +74,36 @@ $ curl -X POST http://localhost:5000/alert -H "Content-Type: application/json" -
   "prometheus_url": "http://c0a22169-monitoring:30900/api/v1/query"
 }'
 ```
-curlを実行したら，以下のようにFlaskアプリを起動した結果の下に表示されます．
+### curlを実行したら，以下のようにFlaskアプリを起動した結果の下に表示されます．
 ```
-$ python3 gemini_alert2.py ✅ GEMINI_API_KEY が設定されました（長さ: 39） * Serving Flask app 'gemini_alert2' * Debug mode: on WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead. * Running on all addresses (0.0.0.0) * Running on http://127.0.0.1:5000 * Running on http://192.168.100.78:5000 Press CTRL+C to quit * Restarting with stat ✅ GEMINI_API_KEY が設定されました（長さ: 39） * Debugger is active! * Debugger PIN: 128-429-581 📁 JSONを保存: results/20251102/alert_20251102_161114.json 🎯 対象メトリクス: (sum by (pod, namespace) (container_memory_usage_bytes{namespace='redmine', pod='redmine-659869bc68-q7w4g'})/ sum by (pod, namespace) (container_spec_memory_limit_bytes{namespace='redmine', pod='redmine-659869bc68-q7w4g'} > 0)) * 100 📊 しきい値: 85.0, 現状値(before): 96.14639282226562 WARNING: All log messages before absl::InitializeLog() is called are written to STDERR E0000 00:00:1762099874.308324 99503 alts_credentials.cc:93] ALTS creds ignored. Not running on GCP and untrusted ALTS is not enabled. ✅ スクリプト生成: results/generated_scripts/confirm.sh ✅ スクリプト生成: results/generated_scripts/fix_issue.sh
+$ python3 gemini_alert.py 
+✅ GEMINI_API_KEY が設定されました（長さ: 39）
+ * Serving Flask app 'gemini_alert'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.78:5000
+Press CTRL+C to quit
+ * Restarting with stat
+✅ GEMINI_API_KEY が設定されました（長さ: 39）
+ * Debugger is active!
+ * Debugger PIN: 128-429-581
+📁 JSONを保存: results/20251102/alert_20251102_170941.json
+🎯 対象メトリクス: (sum by (pod, namespace) (container_memory_usage_bytes{namespace='redmine', pod='redmine-659869bc68-q7w4g'})/ sum by (pod, namespace) (container_spec_memory_limit_bytes{namespace='redmine', pod='redmine-659869bc68-q7w4g'} > 0)) * 100
+📊 しきい値: 85.0, 現状値(before): 96.17691040039062
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1762103381.815367  103809 alts_credentials.cc:93] ALTS creds ignored. Not running on GCP and untrusted ALTS is not enabled.
+⚠️ ガードレール警告: 危険コマンドが検出されました
+違反パターン: ['\\bapt(-get)?\\s+install\\b', '\\byum\\s+install\\b']
+✅ スクリプト生成: results/generated_scripts/confirm.sh
+✅ スクリプト生成: results/generated_scripts/fix_issue.sh
 ```
 保存されたスクリプトやログは/resultsで確認できます． 
 ```
-$ ls 20251102 exec_results generated_scripts (gemini) c0a22169-mo1@c0a22169-monitoring:~/gemini_alert/results$
+$ ls
+20251102  exec_results  generated_scripts
+(gemini) c0a22169-mo1@c0a22169-monitoring:~/gemini_alert/results$
 ```
   
 ## おわりに
