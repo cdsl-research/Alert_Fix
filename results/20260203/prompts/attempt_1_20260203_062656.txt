@@ -1,0 +1,34 @@
+
+# Alert情報
+{'receiver': 'my_app', 'status': 'firing', 'alerts': [{'status': 'firing', 'labels': {'alertname': 'Internal redmine memory check', 'beta_kubernetes_io_arch': 'amd64', 'beta_kubernetes_io_instance_type': 'k3s', 'beta_kubernetes_io_os': 'linux', 'container': 'redmine', 'id': '/kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poda98c8b31_9aa3_4fc1_b3ca_9572f4598ab8.slice/cri-containerd-e3403694927d853cd481dab741493e4fa544f0fd9f697fadb3a9380a520f8556.scope', 'image': 'docker.io/library/redmine:6.0', 'instance': 'c0a22169-monitoring', 'job': 'kubernetes-cadvisor', 'kubernetes_io_arch': 'amd64', 'kubernetes_io_hostname': 'c0a22169-monitoring', 'kubernetes_io_os': 'linux', 'name': 'e3403694927d853cd481dab741493e4fa544f0fd9f697fadb3a9380a520f8556', 'namespace': 'redmine', 'node_kubernetes_io_instance_type': 'k3s', 'node_role_kubernetes_io_control_plane': 'true', 'node_role_kubernetes_io_master': 'true', 'pod': 'redmine-5599f556d7-sq2p5', 'severity': 'critical'}, 'annotations': {'alert_title': 'Internal redmine memory usage 90% high', 'description': 'container redmine memory usage 90% high', 'runbook_url': 'https://runbooks.prometheus-operator.dev/runbooks/alertmanager/alertmanagerfailedreload', 'summary': 'container memory usage high'}, 'startsAt': '2026-02-03T06:26:26.747Z', 'endsAt': '0001-01-01T00:00:00Z', 'generatorURL': 'http://prometheus-6c555c7d97-5qvbl:9090/graph?g0.expr=%28container_memory_usage_bytes%7Bcontainer%3D%22redmine%22%7D+%2F+container_spec_memory_limit_bytes%7Bcontainer%3D%22redmine%22%7D%29+%2A+100+%3E%3D+90&g0.tab=1', 'fingerprint': '95e4df015b115592'}, {'status': 'firing', 'labels': {'alertname': 'Internal redmine memory check', 'beta_kubernetes_io_arch': 'amd64', 'beta_kubernetes_io_instance_type': 'k3s', 'beta_kubernetes_io_os': 'linux', 'container': 'redmine', 'id': '/kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poda98c8b31_9aa3_4fc1_b3ca_9572f4598ab8.slice/cri-containerd-e3403694927d853cd481dab741493e4fa544f0fd9f697fadb3a9380a520f8556.scope', 'image': 'docker.io/library/redmine:6.0', 'instance': 'c0a22169-monitoring', 'job': 'kubernetes-nodes', 'kubernetes_io_arch': 'amd64', 'kubernetes_io_hostname': 'c0a22169-monitoring', 'kubernetes_io_os': 'linux', 'name': 'e3403694927d853cd481dab741493e4fa544f0fd9f697fadb3a9380a520f8556', 'namespace': 'redmine', 'node_kubernetes_io_instance_type': 'k3s', 'node_role_kubernetes_io_control_plane': 'true', 'node_role_kubernetes_io_master': 'true', 'pod': 'redmine-5599f556d7-sq2p5', 'severity': 'critical'}, 'annotations': {'alert_title': 'Internal redmine memory usage 90% high', 'description': 'container redmine memory usage 90% high', 'runbook_url': 'https://runbooks.prometheus-operator.dev/runbooks/alertmanager/alertmanagerfailedreload', 'summary': 'container memory usage high'}, 'startsAt': '2026-02-03T06:26:26.747Z', 'endsAt': '0001-01-01T00:00:00Z', 'generatorURL': 'http://prometheus-6c555c7d97-5qvbl:9090/graph?g0.expr=%28container_memory_usage_bytes%7Bcontainer%3D%22redmine%22%7D+%2F+container_spec_memory_limit_bytes%7Bcontainer%3D%22redmine%22%7D%29+%2A+100+%3E%3D+90&g0.tab=1', 'fingerprint': '630cbdc0c9378efe'}], 'groupLabels': {'alertname': 'Internal redmine memory check', 'instance': 'c0a22169-monitoring'}, 'commonLabels': {'alertname': 'Internal redmine memory check', 'beta_kubernetes_io_arch': 'amd64', 'beta_kubernetes_io_instance_type': 'k3s', 'beta_kubernetes_io_os': 'linux', 'container': 'redmine', 'id': '/kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poda98c8b31_9aa3_4fc1_b3ca_9572f4598ab8.slice/cri-containerd-e3403694927d853cd481dab741493e4fa544f0fd9f697fadb3a9380a520f8556.scope', 'image': 'docker.io/library/redmine:6.0', 'instance': 'c0a22169-monitoring', 'kubernetes_io_arch': 'amd64', 'kubernetes_io_hostname': 'c0a22169-monitoring', 'kubernetes_io_os': 'linux', 'name': 'e3403694927d853cd481dab741493e4fa544f0fd9f697fadb3a9380a520f8556', 'namespace': 'redmine', 'node_kubernetes_io_instance_type': 'k3s', 'node_role_kubernetes_io_control_plane': 'true', 'node_role_kubernetes_io_master': 'true', 'pod': 'redmine-5599f556d7-sq2p5', 'severity': 'critical'}, 'commonAnnotations': {'alert_title': 'Internal redmine memory usage 90% high', 'description': 'container redmine memory usage 90% high', 'runbook_url': 'https://runbooks.prometheus-operator.dev/runbooks/alertmanager/alertmanagerfailedreload', 'summary': 'container memory usage high'}, 'externalURL': 'http://alertmanager-5dd7c48778-8q2s9:9093', 'version': '4', 'groupKey': '{}/{}:{alertname="Internal redmine memory check", instance="c0a22169-monitoring"}', 'truncatedAlerts': 0}
+
+# 環境情報
+$ kubectl get pods -n redmine -o wide
+NAME                       READY   STATUS    RESTARTS   AGE     IP            NODE                  NOMINATED NODE   READINESS GATES
+redmine-5599f556d7-sq2p5   1/1     Running   0          6m34s   10.42.0.168   c0a22169-monitoring   <none>           <none>
+
+
+$ kubectl top pods -n redmine || true
+NAME                       CPU(cores)   MEMORY(bytes)   
+redmine-5599f556d7-sq2p5   1m           164Mi           
+
+
+$ free -h
+               total        used        free      shared  buff/cache   available
+Mem:           3.8Gi       2.5Gi       128Mi       1.4Mi       1.4Gi       1.3Gi
+Swap:          2.8Gi        37Mi       2.7Gi
+
+
+
+# メモリ使用率
+before=95.90928819444444
+threshold=90.0
+
+# 前回試行結果
+last_after=なし
+
+# 要求
+アラートを対処することができる bash スクリプトを生成してください。
+- 実行可能な kubectl コマンドや設定変更を使用
+- 前回試行では改善が見られませんでした
+- 出力は必ず ```bash ``` で囲み、スクリプトのみを返してください

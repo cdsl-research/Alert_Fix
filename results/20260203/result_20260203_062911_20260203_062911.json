@@ -1,0 +1,19 @@
+{
+  "fingerprint": "95e4df015b115592",
+  "metric_promql": "(container_memory_usage_bytes{container=\"redmine\"} / container_spec_memory_limit_bytes{container=\"redmine\"}) * 100",
+  "threshold": 90.0,
+  "alert_received_at": "2026-02-03T06:26:56.757685",
+  "resolved_at": "2026-02-03T06:29:11.559524",
+  "time_to_resolve_seconds": 134.8018388748169,
+  "before": 95.90928819444444,
+  "after": 39.57977294921875,
+  "success": true,
+  "attempts": [
+    {
+      "attempt": 1,
+      "before": 95.90928819444444,
+      "after": 39.57977294921875,
+      "script": "results/20260203/generated_scripts/fix_1_20260203_062656.sh"
+    }
+  ]
+}

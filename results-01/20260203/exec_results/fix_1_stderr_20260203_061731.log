@@ -1,0 +1,2 @@
+error: unknown flag: --container
+See 'kubectl set resources --help' for usage.

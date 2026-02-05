@@ -1,0 +1,31 @@
+{
+  "fingerprint": "e04398e170aa6501",
+  "metric_promql": "(container_memory_usage_bytes{container=\"redmine\"} / container_spec_memory_limit_bytes{container=\"redmine\"}) * 100",
+  "threshold": 90.0,
+  "alert_received_at": "2026-02-03T06:10:41.706915",
+  "resolved_at": "2026-02-03T06:17:02.888299",
+  "time_to_resolve_seconds": 381.18138456344604,
+  "before": 94.11979166666666,
+  "after": 34.0087890625,
+  "success": true,
+  "attempts": [
+    {
+      "attempt": 1,
+      "before": 98.96267361111111,
+      "after": 94.28993055555556,
+      "script": "results/20260203/generated_scripts/fix_1_20260203_061043.sh"
+    },
+    {
+      "attempt": 2,
+      "before": 94.31770833333334,
+      "after": 94.06770833333333,
+      "script": "results/20260203/generated_scripts/fix_2_20260203_061252.sh"
+    },
+    {
+      "attempt": 3,
+      "before": 94.11979166666666,
+      "after": 34.0087890625,
+      "script": "results/20260203/generated_scripts/fix_3_20260203_061501.sh"
+    }
+  ]
+}

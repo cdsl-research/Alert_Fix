@@ -1,0 +1,2 @@
+results/20260203/generated_scripts/fix_2_20260203_061252.sh: line 42: syntax error near unexpected token `)'
+results/20260203/generated_scripts/fix_2_20260203_061252.sh: line 42: `        *) echo "${NUM_PART}.0" # 単位が認識できない場合のフォールバック、安全のためMiBとして扱う'

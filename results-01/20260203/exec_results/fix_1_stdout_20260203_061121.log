@@ -1,0 +1,36 @@
+--- Redmineコンテナのメモリ使用率アラートに対処開始 ---
+対象Deployment: redmine, Namespace: redmine, コンテナ: redmine
+
+--- 1. 現在のPodとリソース使用状況 ---
+NAME                       READY   STATUS    RESTARTS   AGE     IP            NODE                  NOMINATED NODE   READINESS GATES
+redmine-5599f556d7-hd7hd   1/1     Running   0          8m20s   10.42.0.165   c0a22169-monitoring   <none>           <none>
+NAME                       CPU(cores)   MEMORY(bytes)   
+redmine-5599f556d7-hd7hd   1m           164Mi           
+
+--- 2. 現在のメモリリミットを取得中 ---
+現在のメモリリミット: 180Mi
+パースされた現在のメモリリミット (MiB): 180 MiB
+新しいメモリリミット (現在の 25% 増): 225Mi
+
+--- 5. Deployment 'redmine' に新しいメモリリミットを適用中 ---
+deployment.apps/redmine resource requirements updated
+メモリリミットが正常に更新されました。これにより、Deploymentのローリングアップデートが開始されます。
+Podが順次再作成され、新しいメモリリミットが適用されます。
+Podの再作成が完了するまでしばらくお待ちください...
+
+--- 6. ロールアウトのステータスを確認中 (最大5分) ---
+Waiting for deployment "redmine" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "redmine" rollout to finish: 1 old replicas are pending termination...
+deployment "redmine" successfully rolled out
+ロールアウトが正常に完了しました。
+
+--- 7. 更新後のPodとリソース使用状況 ---
+NAME                       READY   STATUS        RESTARTS   AGE     IP            NODE                  NOMINATED NODE   READINESS GATES
+redmine-5599f556d7-hd7hd   1/1     Terminating   0          8m21s   10.42.0.165   c0a22169-monitoring   <none>           <none>
+redmine-6f886649cb-q9z6k   1/1     Running       0          1s      10.42.0.166   c0a22169-monitoring   <none>           <none>
+NAME                       CPU(cores)   MEMORY(bytes)   
+redmine-5599f556d7-hd7hd   1m           164Mi           
+
+--- Redmineコンテナのメモリリミット増加処理が完了しました ---
+数分後、Prometheusなどの監視ツールでアラートが解消されたか確認してください。
+問題が解決しない場合、アプリケーションのメモリリークの可能性も考慮し、より詳細な調査が必要です。

@@ -1,0 +1,29 @@
+--- アラートと現在の状況 ---
+アラート名: Internal redmine memory check
+ネームスペース: redmine
+現在のRedmine Pod (kubectl top podsから): redmine-6f886649cb-q9z6k
+コンテナ名: redmine
+現在のPodメモリ使用量: 174Mi
+--------------------------
+デプロイメント 'redmine' のメモリリミットを更新します。
+更新前のRedmineコンテナのリソース設定:
+{"limits":{"cpu":"500m","memory":"225Mi"},"requests":{"cpu":"200m","memory":"128Mi"}}
+コンテナ 'redmine' のメモリリミットを 512Mi、リクエストを 256Mi に設定するパッチを適用中...
+deployment.apps/redmine patched
+デプロイメント 'redmine' の更新が正常に開始されました。
+Kubernetesはローリングアップデートを実行し、更新されたリソース設定で新しいPodを作成します。
+デプロイメントのロールアウト完了を待機中...
+Waiting for deployment "redmine" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "redmine" rollout to finish: 1 old replicas are pending termination...
+deployment "redmine" successfully rolled out
+デプロイメントのロールアウトが正常に完了しました。
+
+--- 処理後の確認コマンド ---
+1. 新しいPodのステータスを確認します:
+   kubectl get pods -n redmine -o wide
+2. 新しいPodのメモリ使用量を確認します（メトリクスが更新されるまで時間がかかる場合があります）:
+   kubectl top pods -n redmine
+3. 更新されたデプロイメント設定を確認します:
+   kubectl get deployment redmine -n redmine -o yaml | grep -A 5 'resources:'
+
+新しいPodが稼働し、そのメモリ使用量が新しいリミットに対して90%を下回れば、アラートは解消されるはずです。

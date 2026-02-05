@@ -1,0 +1,36 @@
+Redmineコンテナのメモリリミットを増やすスクリプトを実行します。
+対象: namespace='redmine', deployment='redmine', container='redmine'
+新しいメモリリミット: 512Mi
+新しいメモリリクエスト: 256Mi
+
+警告: 'yq' コマンドが見つかりません。一部の出力表示が期待通りに行われない可能性があります。
+推奨: 'yq' をインストールしてください (例: brew install yq または go install github.com/mikefarah/yq@latest)。
+
+### 現在のRedmine Deploymentのリソース設定 ###
+yqが利用できないため、limitsとrequestsのメモリ設定のみ表示します。
+	          limits:
+	            memory: 180Mi
+	          requests:
+	            memory: 128Mi
+
+### Deployment 'redmine' のメモリリソースを更新します... ###
+deployment.apps/redmine patched
+Deployment 'redmine' が更新されました。新しいPodがデプロイされるのを待ちます...
+Waiting for deployment "redmine" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "redmine" rollout to finish: 1 old replicas are pending termination...
+deployment "redmine" successfully rolled out
+新しいRedmine Podが正常にデプロイされました。
+
+### 更新後のRedmine Deploymentのリソース設定 ###
+yqが利用できないため、limitsとrequestsのメモリ設定のみ表示します。
+	          limits:
+	            memory: 512Mi
+	          requests:
+	            memory: 256Mi
+
+### 新しいRedmine Podの現在のリソース使用量 (数秒後に表示) ###
+
+スクリプトは完了しました。
+Prometheusのアラートが解消されるか監視してください。
+Redmineアプリケーションがより安定して動作するか確認してください。
+必要であれば、メモリリミットの値をさらに調整してください。
